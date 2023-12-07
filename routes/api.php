@@ -21,3 +21,4 @@ use App\Http\Controllers\Api\PageController;
  */
 
  Route::get('/projects', [PageController::class, 'index']);
+ Route:: get('/projects/project-detail/{slug}', [PageController::class, 'getProjectBySlug']);
