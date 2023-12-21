@@ -4,11 +4,11 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Project;
 use Illuminate\Support\Str;
 use App\Functions\Helper;
-use Faker\Generator as Faker;
 use App\Models\Type;
+use Faker\Generator as Faker;
+use App\Models\Project;
 
 class ProjectsTableSeeder extends Seeder
 {
@@ -19,7 +19,6 @@ class ProjectsTableSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-
         for($i = 0; $i < 20; $i++){
             $new_project = new Project();
             $new_project->type_id = Type::inRandomOrder()->first()->id;
@@ -29,7 +28,9 @@ class ProjectsTableSeeder extends Seeder
             $new_project->github_link = $faker->url;
             $new_project->other_developers = $faker->name;
             $new_project->save();
-    /*     $data = [
+
+
+            /*     $data = [
 
             [
                 'title' => 'Laravel Boolfolio',

@@ -17,9 +17,10 @@
     @include('admin.partials.header')
 
     <div class="main-wrapper d-flex">
-        @include('admin.partials.sidebar')
-        <main class="w-100 p-5 overflow-auto mb-5">
 
+        @include('admin.partials.sidebar') {{-- in tutte le pagine che usano questo layout apparirà la sidebar --}}
+
+        <main class="w-100 p-5 overflow-auto mb-5">
             @yield('content')
         </main>
 

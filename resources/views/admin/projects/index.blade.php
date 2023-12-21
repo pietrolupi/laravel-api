@@ -16,7 +16,12 @@
     <table class="table mt-4">
         <thead>
           <tr>
-            <th scope="col">Titolo</th>
+            <th scope="col">
+                <a href="{{route('admin.order-by', ['direction'=>$direction , 'column'=>'id'])}}"> ID </a>
+            </th>
+            <th scope="col">
+                <a href="{{route('admin.order-by', ['direction'=>$direction , 'column'=>'title'])}}"> Titolo </a>
+            </th>
             <th scope="col">Descrizione</th>
             <th scope="col">Tecnologie</th>
             <th scope="col">Tipologia</th>
@@ -29,6 +34,7 @@
             @foreach ($projects as $project)
 
             <tr>
+              <td>{{$project->id}}</td>
               <td>{{$project->title}}</td>
               <td>{!!$project->description!!}</td>
 
