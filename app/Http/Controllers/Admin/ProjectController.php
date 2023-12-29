@@ -11,6 +11,7 @@ use App\Http\Requests\ProjectRequest;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Type;
 use App\Models\Technology;
+use Illuminate\Database\Query\Builder;
 
 
 class ProjectController extends Controller
@@ -33,10 +34,21 @@ class ProjectController extends Controller
         }
 
         $direction = 'desc';
+        $toSearch = '';
 
 
-        return view('admin.projects.index', compact('projects', 'direction'));
+        return view('admin.projects.index', compact('projects', 'direction', 'toSearch'));
 
+    }
+
+    public function search(Request $request){
+
+        $toSearch = $request->toSearch;
+
+        $projects = Project::where('title', 'LIKE', '%'.$toSearch.'%')->paginate(5);
+        $direction = 'desc';
+
+        return view('admin.projects.index', compact('projects', 'toSearch', 'direction'));
     }
 
 
@@ -48,6 +60,17 @@ class ProjectController extends Controller
 
         return view('admin.projects.index', compact('projects', 'direction'));
 
+    }
+
+    public function noTechnologies(){
+        $projects = Project::whereNotIn('id', function(Builder $query){
+            $query->select('project_id')->from('project_technology');
+        })->paginate(5);
+
+        $direction = 'desc'; //inserisco solo per non creare error con searchbar
+        $toSearch = ''; //inserisco solo per non creare error con searchbar
+
+        return view('admin.projects.index', compact('projects','direction', 'toSearch'));
     }
 
 

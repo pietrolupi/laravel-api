@@ -24,7 +24,7 @@ class ProjectRequest extends FormRequest
         return [
             'title' => 'required|min:3|max:30',
             'description' => 'required|min:5',
-            'image' => 'min:4',
+            'image' => 'image|mimes:png,jpg,jpeg|max:2048',  //accetto solo img in questo formato e 'max' 2mb
             'github_link' => 'url',
         ];
     }

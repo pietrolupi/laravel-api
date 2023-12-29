@@ -15,7 +15,7 @@ class PageController extends Controller
        $projects = Project::with('technologies', 'type')->orderBy('id', 'desc')->paginate(4);
 
        foreach ($projects as $project){
-           $project->image ? $project->image = asset('storage/' . $project->image) : $project->image = ('storage/placeholer.jpg');
+           $project->image ? $project->image = asset('storage/' . $project->image) : $project->image = asset('storage/placeholder.jpg');
         }
 
     return response()->json($projects);
@@ -26,8 +26,12 @@ class PageController extends Controller
     public function getProjectBySlug($slug){
 
        $project = Project::with('technologies', 'type')->where('slug', $slug)->first();
-
-       return response()->json($project);
+       $project->image ? $project->image = asset('storage/'.$project->image) : $project->image = asset('storage/placeholder.jpg');
+       $success = true;
+       if(!$project){
+        $success = false;
+       }
+       return response()->json(compact('project', 'success'));
     }
     }
 

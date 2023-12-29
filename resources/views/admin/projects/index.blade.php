@@ -41,14 +41,22 @@
               <td>
                 @forelse ($project->technologies as $technology)
 
-                    <a href="{{route('admin.project-technology', $technology)}}">
+                    <a
+                    class = "badge text-bg-info text-white text-decoration-none"
+                    href="{{route('admin.project-technology', $technology)}}">
 
                        {{$technology->name}}
 
                     </a>
 
                 @empty
-                    -
+                    <a
+                    class = "badge text-bg-info text-white text-decoration-none"
+                    href="{{route('admin.no-technologies')}}">
+
+                        -NONE-
+
+                    </a>
                 @endforelse
               </td>
 
@@ -69,7 +77,7 @@
 
         </tbody>
       </table>
-      {{$projects->links()}}
+      {{$projects->  links()}}
 
       <a class="btn btn-success mt-3" href="{{route('admin.projects.create')}}">Inserisci un nuovo progetto</a>
 </div>

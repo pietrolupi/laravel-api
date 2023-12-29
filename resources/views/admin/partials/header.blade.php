@@ -7,13 +7,18 @@
             </div>
 
             <div>
-                <form action="{{route('admin.projects.index')}}" method="GET">
+                {{-- SEARCHBAR --}}
+
+                <form action="{{route('admin.search')}}" method="GET">
+        
                     <input name="toSearch" class="form-control mr-sm-2" type="text" type="search" placeholder="Cerca un progetto...">
                 </form>
             </div>
 
             <div class="d-flex align-items-center">
+
                 <a class="me-3" href="{{route('profile.edit')}}">{{Auth::user()->name}}</a>
+
                 <form action="{{route('logout')}}" method="POST" class="d-flex">
                     @csrf
                     <button class="btn btn-danger my-2 my-sm-0" type="submit">LOGOUT</button>
